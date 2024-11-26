@@ -21,7 +21,6 @@ export default function Modal() {
     fetch("http://localhost:3000/api/publisher")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPublisher(data);
       });
   }, []);
@@ -53,6 +52,7 @@ export default function Modal() {
       <div
         onClick={() => setShowModal(true)}
         className="flex items-center mt-10 mr-10 hover"
+        id="openmodal"
       >
         <p>Add a magazine</p>
         <Icon path={mdiPlus} size={2} />
@@ -72,6 +72,7 @@ export default function Modal() {
                   <input
                     type="text"
                     value={title}
+                    id="inputtitle"
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Title..."
                     className="rounded-sm h-10 textBlack"
@@ -82,6 +83,7 @@ export default function Modal() {
                   <input
                     type="text"
                     value={image}
+                    id="inputimage"
                     onChange={(e) => setImage(e.target.value)}
                     placeholder="Cover..."
                     className="rounded-sm h-10 textBlack"
@@ -92,6 +94,7 @@ export default function Modal() {
                   <input
                     type="text"
                     value={description}
+                    id="inputdesc"
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Description..."
                     className="rounded-sm h-10 textBlack"
@@ -102,6 +105,7 @@ export default function Modal() {
                   <input
                     type="text"
                     value={character}
+                    id="inputchar"
                     onChange={(e) => setCharacter(e.target.value)}
                     placeholder="Character..."
                     className="rounded-sm h-10 textBlack"
@@ -129,6 +133,7 @@ export default function Modal() {
                   className="text-white bg-red-500 px-6 py-2 w-1/2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 rounded"
                   type="button"
                   onClick={() => setShowModal(false)}
+                  id="closebutton"
                 >
                   Close
                 </button>

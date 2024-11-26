@@ -54,13 +54,14 @@ export default function App() {
         <div className="flex flex-col justify-center items-center">
           {allComics.length > 0 ? (
             <>
-              <p className="text-white italic text-lg mb-3">
+              <p id="titleelement" className="text-white italic text-lg mb-3">
                 {allComics[currentIndex].title}
               </p>
               <div className="flex flex-row items-center">
                 <div
                   className="flex flex-col justify-center items-center hover"
                   onClick={SelectPreviousComic}
+                  id="previouscomic"
                 >
                   <p>Previous</p>
                   <Icon
@@ -77,6 +78,7 @@ export default function App() {
                 <div
                   className="flex flex-col justify-center items-center hover"
                   onClick={SelectNextComic}
+                  id="nextcomic"
                 >
                   <p>Next</p>
                   <Icon
