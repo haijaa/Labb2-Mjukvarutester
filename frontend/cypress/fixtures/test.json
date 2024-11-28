@@ -1,0 +1,17 @@
+[
+{
+  "title": "Antons tidning",
+  "description": "The first of the first. Tales of testing software.",
+  "image": "https://click-eshop.com/upload/productImages/100194.webp",
+  "character": "Testson",
+  "publisher_name": "Antons förlag"
+},
+{
+  "title": "Fridas tidning",
+  "description": "Tales of testing software.",
+  "image": "https://cdn.starwebserver.se/shops/sveriges-tyger-online/files/test.jpg",
+  "character": "Other testson",
+  "publisher_name": "Fridas förlag"
+}
+
+]

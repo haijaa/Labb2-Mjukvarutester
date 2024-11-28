@@ -4,12 +4,14 @@ import { Icon } from "@mdi/react";
 import {
   mdiArrowLeftThinCircleOutline,
   mdiArrowRightThinCircleOutline,
+  mdiTrashCan
 } from "@mdi/js";
 import { useState, useEffect } from "react";
 import Modal from "./Components/Modal";
 import Random from "./Components/Random";
 
 export interface allComics {
+  id: number;
   title: string;
   description: string;
   image: string;
@@ -17,6 +19,7 @@ export interface allComics {
   publisher_name: string;
   issue: number;
 }
+
 
 export default function App() {
   const [allComics, setAllComics] = useState<allComics[]>([]);
@@ -27,6 +30,7 @@ export default function App() {
       .then((response) => response.json())
       .then((result) => {
         setAllComics(result);
+        console.log(allComics)
       });
   }, []);
 
@@ -37,6 +41,18 @@ export default function App() {
   const SelectNextComic = () => {
     setCurrentIndex((i) => (i === allComics.length - 1 ? 0 : i + 1));
   };
+  
+  const deleteComic = async (x: number) => {
+    await fetch('http://localhost:3000/api/magazines/delete', {
+      method: 'DELETE',
+      body: JSON.stringify({
+        id: x
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+  }
 
   return (
     <>
@@ -54,13 +70,19 @@ export default function App() {
         <div className="flex flex-col justify-center items-center">
           {allComics.length > 0 ? (
             <>
-              <p className="text-white italic text-lg mb-3">
-                {allComics[currentIndex].title}
+            <div className="flex">
+              <p id="titleelement" className="text-white italic text-lg mb-3">
+                {allComics[currentIndex].title} 
               </p>
+              <div onClick={() => deleteComic(allComics[currentIndex].id)}>
+              <Icon  path={mdiTrashCan} size={1} className="hover"/> 
+              </div>
+              </div>
               <div className="flex flex-row items-center">
                 <div
                   className="flex flex-col justify-center items-center hover"
                   onClick={SelectPreviousComic}
+                  id="previouscomic"
                 >
                   <p>Previous</p>
                   <Icon
@@ -77,6 +99,7 @@ export default function App() {
                 <div
                   className="flex flex-col justify-center items-center hover"
                   onClick={SelectNextComic}
+                  id="nextcomic"
                 >
                   <p>Next</p>
                   <Icon

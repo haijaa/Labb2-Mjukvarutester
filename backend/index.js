@@ -58,7 +58,7 @@ client.connect();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)(), express_1.default.json());
 app.get("/api/magazines", (_request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    const { rows } = yield client.query("SELECT magazines.title, magazines.description, magazines.image, magazines.character, publisher.name AS publisher_name FROM magazines JOIN publisher ON publisher.id = publisherid");
+    const { rows } = yield client.query("SELECT magazines.id, magazines.title, magazines.description, magazines.image, magazines.character, publisher.name AS publisher_name FROM magazines JOIN publisher ON publisher.id = publisherid");
     response.send(rows);
 }));
 app.get("/api/magazines/marvel", (_request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -78,6 +78,16 @@ app.post("/api/magazines/post", (req, res) => __awaiter(void 0, void 0, void 0, 
     catch (error) {
         console.error("Fel här", error);
         res.status(500).send("Fel vid server");
+    }
+}));
+app.delete('/api/magazines/delete', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    try {
+        const { rows } = yield client.query('DELETE FROM magazines WHERE id = $1', [id]);
+        res.status(200).json(`Tidning ${id} är borttagen`);
+    }
+    catch (error) {
+        res.status(500).json('Fel vid server.');
     }
 }));
 app.get("/api/publisher", (_request, response) => __awaiter(void 0, void 0, void 0, function* () {
