@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import { Client } from "pg";
 import express, { Request, Response } from "express";
 import {
+  deleteMagazine,
   getMagazines,
   postMagazine,
   publisher,
@@ -24,7 +25,7 @@ app.use(cors(), express.json());
 
 app.get("/api/magazines", async (_request: Request, response: Response) => {
   const { rows } = await client.query<getMagazines>(
-    "SELECT magazines.title, magazines.description, magazines.image, magazines.character, publisher.name AS publisher_name FROM magazines JOIN publisher ON publisher.id = publisherid"
+    "SELECT magazines.id, magazines.title, magazines.description, magazines.image, magazines.character, publisher.name AS publisher_name FROM magazines JOIN publisher ON publisher.id = publisherid"
   );
   response.send(rows);
 });
@@ -61,6 +62,19 @@ app.post("/api/magazines/post", async (req: Request, res: Response) => {
     res.status(500).send("Fel vid server");
   }
 });
+
+app.delete('/api/magazines/delete', async (req:Request, res: Response) => {
+  const { id } = req.body as deleteMagazine;
+  try {
+    const { rows } = await client.query<deleteMagazine> (
+      'DELETE FROM magazines WHERE id = $1',
+      [id]
+    )
+    res.status(200).json(`Tidning ${id} är borttagen`)
+  } catch (error) {
+    res.status(500).json('Fel vid server.')
+  }
+})
 
 app.get(
   "/api/publisher",

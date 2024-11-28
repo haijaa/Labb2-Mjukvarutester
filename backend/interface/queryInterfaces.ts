@@ -1,10 +1,11 @@
 export interface getMagazines {
+  id: number;
   title: string;
   description: string;
   image: string;
   character: string;
   publisher_name: string;
-  id: number;
+  publisherId: number;
 }
 
 export interface postMagazine {
@@ -18,4 +19,8 @@ export interface postMagazine {
 export interface publisher {
   name: string;
   id: number;
+}
+
+export interface deleteMagazine {
+  id: number
 }
