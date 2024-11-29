@@ -59,12 +59,16 @@ export default function App() {
       <div className="bg-black text-white">
         <div>
           <div className="flex justify-between mb-10">
+            <div id="randommagazine">
             <Random
               allComics={allComics}
               currentIndex={currentIndex}
               setCurrentIndex={setCurrentIndex}
             />
+            </div>
+            <div id="modalforaddingmagazine">
             <Modal />
+            </div>
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">

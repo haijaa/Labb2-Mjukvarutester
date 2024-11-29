@@ -17,5 +17,6 @@ describe("<App />", () => {
     cy.wait('@allComics')
 
     cy.get('#titleelement').should('contain', 'Antons tidning')
+    cy.viewport(700, 700)
   });
 });
