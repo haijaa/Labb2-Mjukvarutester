@@ -30,6 +30,8 @@ INTERFACE använder jag på lite olika sätt, gjorde en mapp i backend som hante
 
 # Mål LABB 2.
 
+Värt att notera, vissa delar av databasen har unika värden så titlar eller liknande går inte att lägga till flera gånger. Vill man köra test fler gånger, gå in på frontend och ta bort aktuell titel eller ändra en bokstav.
+
 Skriv minst ett E2E-test som använder it - Det hittar man i cypress/e2e/FirstE2Esmall
 
 Skriv minst ett komponenttest som använder it - Det hittar man i cypress/component/modal
