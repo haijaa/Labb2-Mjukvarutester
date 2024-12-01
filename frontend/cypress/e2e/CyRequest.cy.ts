@@ -1,5 +1,6 @@
 describe('Cy.request tests GET and POST', () => {
     it('Testing GET.', () => {
+      cy.visit('http://localhost:5173')
       cy.request({
         method: 'GET',
         url: '/api/magazines', 
@@ -8,7 +9,7 @@ describe('Cy.request tests GET and POST', () => {
         cy.log(data.body)
       });
     });
-    it('Testing POST.', () => {
+    it('Testing POST, we are not seeing result in frontend in cypress but if we refresh our site we will see added magazine to be Venom War.', () => {
       cy.request({
         method: 'POST',
         url: '/api/magazines/post',

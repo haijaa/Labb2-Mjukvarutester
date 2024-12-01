@@ -144,6 +144,7 @@ export default function Modal() {
                     setShowModal(false);
                     PostMagazine();
                   }}
+                  id="addbutton"
                 >
                   Add
                 </button>

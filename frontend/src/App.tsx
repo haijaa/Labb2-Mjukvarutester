@@ -52,6 +52,8 @@ export default function App() {
         'Content-type': 'application/json'
       }
     })
+    alert('Magazine removed');
+    window.location.reload()
   }
 
   return (
