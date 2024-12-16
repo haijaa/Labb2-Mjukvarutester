@@ -1,4 +1,4 @@
-name: Testa cypress
+name: Testa Cypress
 
 on: push
 
@@ -19,16 +19,30 @@ jobs:
 
       # 3. Exportera secrets som miljövariabler
       - name: Set environment variables
-        env:
-          SECRET_DATABASE: ${{ secrets.SECRET_DATABASE }}
-        run: echo "Environment variables are set."
+        run: echo "DATABASE_URL=${{ secrets.SECRET_DATABASE }}" >> $GITHUB_ENV
 
-      # 4. Installera beroenden
-      - name: Install dependencies
-        run: npm install
-
-      # 5. Kör bygg och tester
-      - name: Run build and tests
+      # 4. Installera frontend-beroenden
+      - name: Install frontend dependencies
         run: |
-          npm run build
-          npm run test
+          cd frontend
+          npm install
+
+      # 5. Installera backend-beroenden
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      # 6. Starta backend (parallellt med Cypress)
+      - name: Start backend
+        run: |
+          cd backend
+          npm run dev
+        env:
+          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
+
+      # 7. Kör Cypress-tester
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
