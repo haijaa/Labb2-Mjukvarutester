@@ -31,7 +31,7 @@ jobs:
       - name: Start backend
         run: |
           cd backend
-          npm run dev &
+          npm run dev
         env:
           DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
 
@@ -45,7 +45,7 @@ jobs:
       - name: Start frontend
         run: |
           cd frontend
-          npm run dev &
+          npm run dev
         env:
           REACT_APP_API_URL: http://localhost:3000 # Anpassa efter din API-URL
 
@@ -53,4 +53,5 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
+          working-directory: frontend
           browser: electron
