@@ -41,7 +41,7 @@ jobs:
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm install
+          npm install &
 
       # 7. Starta frontend
       - name: Start frontend
