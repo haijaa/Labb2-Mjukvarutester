@@ -47,7 +47,7 @@ jobs:
           cd frontend
           npm run dev &
         env:
-          REACT_APP_API_URL: http://localhost:5000 # Anpassa efter din API-URL
+          REACT_APP_API_URL: http://localhost:3000 # Anpassa efter din API-URL
 
       # 8. Kör Cypress-tester
       - name: Run Cypress tests
