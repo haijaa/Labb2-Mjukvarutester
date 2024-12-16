@@ -20,17 +20,17 @@ jobs:
           cd backend
           npm install
 
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
       - name: Start backend
         run: |
           cd backend
           npm run dev
         env:
           DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
-
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
 
       - name: Start frontend
         run: |
