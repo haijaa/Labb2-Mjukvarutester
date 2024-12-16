@@ -17,6 +17,12 @@ jobs:
         with:
           node-version: 16
 
+      # 3. Exportera miljövariabler
+      - name: Set environment variables
+        env:
+          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
+          REACT_APP_API_URL: http://localhost:5000 # Anpassa efter din API-URL
+
       # 4. Installera backend-beroenden
       - name: Install backend dependencies
         run: |
@@ -41,7 +47,7 @@ jobs:
       - name: Start frontend
         run: |
           cd frontend
-          npm run dev
+          npm run dev &
         env:
           REACT_APP_API_URL: http://localhost:3000 # Anpassa efter din API-URL
 
