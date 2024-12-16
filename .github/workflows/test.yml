@@ -19,6 +19,7 @@ jobs:
 
       # 3. Exportera miljövariabler
       - name: Set environment variables
+        run: echo "DATABASE_URL=${{ secrets.SECRET_DATABASE }}" >> $GITHUB_ENV
         env:
           DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
           REACT_APP_API_URL: http://localhost:5000 # Anpassa efter din API-URL
@@ -41,7 +42,7 @@ jobs:
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm install &
+          npm install
 
       # 7. Starta frontend
       - name: Start frontend
