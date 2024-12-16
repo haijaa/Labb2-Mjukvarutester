@@ -50,7 +50,8 @@ const dotenv = __importStar(require("dotenv"));
 const pg_1 = require("pg");
 const express_1 = __importDefault(require("express"));
 dotenv.config();
-const port = 3000;
+// const port: number = 3000;
+const port = process.env.PORT || 3000;
 const client = new pg_1.Client({
     connectionString: process.env.PGURI,
 });
