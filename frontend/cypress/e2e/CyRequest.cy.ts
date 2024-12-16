@@ -1,6 +1,6 @@
 describe('Cy.request tests GET and POST', () => {
     it('Testing GET.', () => {
-      cy.visit('http://localhost:5173')
+      cy.visit('/')
       cy.request({
         method: 'GET',
         url: '/api/magazines', 
