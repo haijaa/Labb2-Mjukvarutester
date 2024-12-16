@@ -17,32 +17,40 @@ jobs:
         with:
           node-version: 16
 
-      # 3. Exportera secrets som miljövariabler
+      # 3. Exportera miljövariabel för databasen
       - name: Set environment variables
         run: echo "DATABASE_URL=${{ secrets.SECRET_DATABASE }}" >> $GITHUB_ENV
 
-      # 4. Installera frontend-beroenden
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-
-      # 5. Installera backend-beroenden
+      # 4. Installera backend-beroenden
       - name: Install backend dependencies
         run: |
           cd backend
           npm install
 
-      # 6. Starta backend (parallellt med Cypress)
+      # 5. Starta backend
       - name: Start backend
         run: |
           cd backend
-          npm run dev
+          npm run dev &
         env:
           DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
 
-      # 7. Kör Cypress-tester
-      - name: Cypress run
+      # 6. Installera frontend-beroenden
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # 7. Starta frontend
+      - name: Start frontend
+        run: |
+          cd frontend
+          npm run dev &
+        env:
+          REACT_APP_API_URL: http://localhost:5000 # Anpassa efter din API-URL
+
+      # 8. Kör Cypress-tester
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          browser: chrome
+          browser: electron
