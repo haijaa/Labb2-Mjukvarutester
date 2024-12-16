@@ -19,9 +19,10 @@ jobs:
 
       # 3. Exportera miljövariabler
       - name: Set environment variables
-        run: echo "DATABASE_URL=${{ secrets.SECRET_DATABASE }}" >> $GITHUB_ENV
+        run: |
+          echo "DATABASE_URL=$(aws secretsmanager get-secret-value --secret-id your-secret-id --query SecretString --output text)" >> $GITHUB_ENV
         env:
-          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
+          REACT_APP_API_URL: http://localhost:5000 # Anpassa efter din API-URL
 
       # 4. Installera backend-beroenden
       - name: Install backend dependencies
@@ -48,6 +49,8 @@ jobs:
         run: |
           cd frontend
           npm run dev &
+        env:
+          REACT_APP_API_URL: http://localhost:3000 # Anpassa efter din API-URL
 
       # 8. Kör Cypress-tester
       - name: Run Cypress tests
