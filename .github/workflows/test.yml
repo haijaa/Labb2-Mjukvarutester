@@ -29,7 +29,7 @@ jobs:
           cd backend
           npm run dev
         env:
-          PGURI: ${{ secrets.PGURI }}
+          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
 
       # 6. Installera frontend-beroenden
       - name: Install frontend dependencies
