@@ -23,8 +23,7 @@ jobs:
       # 3. Exportera secrets som miljövariabler
       - name: Set environment variables
         env:
-          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
-
+          SECRET_DATABASE: ${{ secrets.SECRET_DATABASE }}
         run: echo "Environment variables are set."
 
       # 4. Installera beroenden
