@@ -17,10 +17,6 @@ jobs:
         with:
           node-version: 16
 
-      # 3. Exportera miljövariabel för databasen
-      - name: Set environment variables
-        run: echo "DATABASE_URL=${{ secrets.PGURI }}" >> $GITHUB_ENV
-
       # 4. Installera backend-beroenden
       - name: Install backend dependencies
         run: |
