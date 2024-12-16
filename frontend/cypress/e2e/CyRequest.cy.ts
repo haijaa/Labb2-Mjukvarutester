@@ -22,6 +22,7 @@ describe('Cy.request tests GET and POST', () => {
         }
       })
     })
+
 });
   
 
