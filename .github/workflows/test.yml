@@ -19,7 +19,7 @@ jobs:
 
       # 3. Exportera miljövariabel för databasen
       - name: Set environment variables
-        run: echo "DATABASE_URL=${{ secrets.SECRET_DATABASE }}" >> $GITHUB_ENV
+        run: echo "DATABASE_URL=${{ secrets.PGURI }}" >> $GITHUB_ENV
 
       # 4. Installera backend-beroenden
       - name: Install backend dependencies
@@ -33,7 +33,7 @@ jobs:
           cd backend
           npm run dev
         env:
-          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
+          PGURI: ${{ secrets.PGURI }}
 
       # 6. Installera frontend-beroenden
       - name: Install frontend dependencies
