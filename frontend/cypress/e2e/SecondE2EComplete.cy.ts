@@ -1,6 +1,6 @@
 describe("Full test database -> backend -> frontend", () => {
   it("Starting by visit landingapge. Locating title and random mag button. Comparing title before clicking and after to see that if the title changes. Then proceeds to open modal entering all fields and adding magazine to see that frontend, backend and database can work correctly.", () => {
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
     cy.get('#titleelement').invoke('text').then((titleBeforeClick) => {
       cy.log('Before: ', titleBeforeClick)
       cy.get('#randommagazine').click()
