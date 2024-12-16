@@ -29,8 +29,9 @@ jobs:
         run: |
           cd backend
           npm run dev &
+
         env:
-          DATABASE_URL: ${{ secrets.SECRET_DATABASE }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Start frontend
         run: |
