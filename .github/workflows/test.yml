@@ -31,7 +31,7 @@ jobs:
           npm run dev &
 
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGURI: ${{ secrets.PGURI }}
 
       - name: Start frontend
         run: |
