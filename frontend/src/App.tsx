@@ -4,7 +4,7 @@ import { Icon } from "@mdi/react";
 import {
   mdiArrowLeftThinCircleOutline,
   mdiArrowRightThinCircleOutline,
-  mdiTrashCan
+  mdiTrashCan,
 } from "@mdi/js";
 import { useState, useEffect } from "react";
 import Modal from "./Components/Modal";
@@ -20,7 +20,6 @@ export interface allComics {
   issue: number;
 }
 
-
 export default function App() {
   const [allComics, setAllComics] = useState<allComics[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +29,7 @@ export default function App() {
       .then((response) => response.json())
       .then((result) => {
         setAllComics(result);
-        console.log(allComics)
+        console.log(allComics);
       });
   }, []);
 
@@ -41,20 +40,20 @@ export default function App() {
   const SelectNextComic = () => {
     setCurrentIndex((i) => (i === allComics.length - 1 ? 0 : i + 1));
   };
-  
+
   const deleteComic = async (x: number) => {
-    await fetch('http://localhost:3000/api/magazines/delete', {
-      method: 'DELETE',
+    await fetch("http://localhost:3000/api/magazines/delete", {
+      method: "DELETE",
       body: JSON.stringify({
-        id: x
+        id: x,
       }),
       headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    alert('Magazine removed');
-    window.location.reload()
-  }
+        "Content-type": "application/json",
+      },
+    });
+    alert("Magazine removed");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -62,27 +61,27 @@ export default function App() {
         <div>
           <div className="flex justify-between mb-10">
             <div id="randommagazine">
-            <Random
-              allComics={allComics}
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
-            />
+              <Random
+                allComics={allComics}
+                currentIndex={currentIndex}
+                setCurrentIndex={setCurrentIndex}
+              />
             </div>
             <div id="modalforaddingmagazine">
-            <Modal />
+              <Modal />
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
           {allComics.length > 0 ? (
             <>
-            <div className="flex">
-              <p id="titleelement" className="text-white italic text-lg mb-3">
-                {allComics[currentIndex].title} 
-              </p>
-              <div onClick={() => deleteComic(allComics[currentIndex].id)}>
-              <Icon  path={mdiTrashCan} size={1} className="hover"/> 
-              </div>
+              <div className="flex">
+                <p id="titleelement" className="text-white italic text-lg mb-3">
+                  {allComics[currentIndex].title}
+                </p>
+                <div onClick={() => deleteComic(allComics[currentIndex].id)}>
+                  <Icon path={mdiTrashCan} size={1} className="hover" />
+                </div>
               </div>
               <div className="flex flex-row items-center">
                 <div

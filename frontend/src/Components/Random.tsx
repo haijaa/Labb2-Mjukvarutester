@@ -19,7 +19,7 @@ export default function RandomMagazine(props: RandomProps) {
       onClick={RandomMagazine}
     >
       <Icon path={mdiRotate3dVariant} size={2} />
-      <p>Random magazine</p>
+      <p data-cy="random-title">Random magazine</p>
     </div>
   );
 }

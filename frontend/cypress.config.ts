@@ -13,4 +13,5 @@ export default defineConfig({
     },
     specPattern: "cypress/components/*/.cy.{js,ts,jsx,tsx}", 
   },
+  
 });

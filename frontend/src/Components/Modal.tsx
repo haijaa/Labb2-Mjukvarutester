@@ -54,7 +54,7 @@ export default function Modal() {
         className="flex items-center mt-10 mr-10 hover"
         id="openmodal"
       >
-        <p>Add a magazine</p>
+        <p data-cy="modal-title">Add a magazine</p>
         <Icon path={mdiPlus} size={2} />
       </div>
 
