@@ -37,6 +37,7 @@ jobs:
         run: |
           cd frontend
           npm run dev &
+          sleep 60
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
