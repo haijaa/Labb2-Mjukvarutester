@@ -1,3 +1,54 @@
+# name: Testa Cypress
+
+# on: push
+
+# jobs:
+#   build-and-test:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 20
+
+#       - name: Install backend dependencies
+#         run: |
+#           cd backend
+#           npm install
+
+#       - name: Install frontend dependencies
+#         run: |
+#           cd frontend
+#           npm install
+
+#       - name: Start backend
+#         run: |
+#           cd backend
+#           npm run dev &
+
+#         env:
+#           PGURI: ${{ secrets.PGURI }}
+
+#       - name: Start frontend
+#         run: |
+#           cd frontend
+#           npm run dev &
+#         env:
+#           PORT: 5173
+
+#       - name: Check if frontend server is up
+#         run: curl -I http://localhost:5173
+
+#       - name: Run Cypress tests
+#         uses: cypress-io/github-action@v6
+#         with:
+#           working-directory: frontend
+#           browser: electron
+
 name: Testa Cypress
 
 on: push
@@ -29,7 +80,6 @@ jobs:
         run: |
           cd backend
           npm run dev &
-
         env:
           PGURI: ${{ secrets.PGURI }}
 
@@ -43,8 +93,17 @@ jobs:
       - name: Check if frontend server is up
         run: curl -I http://localhost:5173
 
-      - name: Run Cypress tests
+      # E2E-tester
+      - name: Run Cypress E2E tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: frontend
+          browser: electron
+
+      # Komponenttester
+      - name: Run Cypress Component Tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: frontend
+          testing-type: component
           browser: electron
