@@ -41,6 +41,7 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
+        run: npx cypress run --config-file cypress.json
         with:
           working-directory: frontend
           browser: electron
